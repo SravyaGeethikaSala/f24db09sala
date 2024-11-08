@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1= title
+  -
+    const results = [
+      { instrument_name: "Guitar", instrument_material: "Wood", instrument_price: 15000 },
+      { instrument_name: "Piano", instrument_material: "Felt", instrument_price: 20000 },
+      { instrument_name: "Violin", instrument_material: "Steel", instrument_price: 10000 }
+    ];
+  .container-fluid 
+    .row
+      each item, index in results 
+        .col-sm-2(onclick=`buy(${index})`)  // Add onclick event here
+          h3 #{item.instrument_name}
+          p instrument_material: #{item.model}
+          p instrument_price: #{item.power_usage}W
+
+  //- JavaScript function to handle the buy action
+  script.
+    function buy(index) {
+      alert(`You purchased item ${index}`);
+    }
