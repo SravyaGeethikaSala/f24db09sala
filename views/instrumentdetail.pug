@@ -8,8 +8,8 @@ block content
     else
         - let instrumentid = toShow._id
         - let name = toShow.instrument_name
-        - let instrumentsmaterial = toShow.instrument_material
-        - let instrumentsprice = toShow.instrument_price
+        - let instrumentmaterial = toShow.instrument_material
+        - let instrumentprice = toShow.instrument_price
 
         div(class="mb-3")
             div.row.mb-2
@@ -25,9 +25,9 @@ block content
                 div(class='instrumentAttr mr-3 font-weight-bold') Instrument Price:
                 div #{instrumentprice}
 
-        //- button(class="btn btn-secondary mt-3" onclick="goBack()") Go Back
+        button(class="btn btn-secondary mt-3" onclick="goBack()") Go Back
 
-    //- script.
-    //-     function goBack() {
-    //-         window.location.href = "/instruments";
-    //-     }
+    script.
+        function goBack() {
+            window.location.href = "/instruments";
+        }

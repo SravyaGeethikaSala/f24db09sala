@@ -1,4 +1,4 @@
- extends layout
+extends layout
 
 block content
     h1 Instrument Update
@@ -18,7 +18,7 @@ block content
         - let actionid = "/resource/instrument/" + instrumentid
         form(id='instrumentForm', action=actionid, method="PUT")
             div.form-group
-                label.instrumentAttr(for='name') Instrument Name:
+                label.instrumentAttr(for='instrument_name') Instrument Name:
                 input#instrument_name(type='text', name='instrument_name', value=instrument_name, class='form-control')
             div.form-group
                 label.instrumentAttr(for='instrument_material') Instrument Material:
