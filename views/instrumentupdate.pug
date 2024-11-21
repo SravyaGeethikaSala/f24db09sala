@@ -1,0 +1,53 @@
+ extends layout
+
+block content
+    h1 Instrument Update
+
+    if (toShow == null)
+        h2 No instance found to update
+    else
+        - let instrumentid = toShow._id
+        - let instrument_name = toShow.instrument_name
+        - let instrument_material = toShow.instrument_material
+        - let instrument_price = toShow.instrument_price
+
+        div.row.mb-3
+            div.mr-1.font-weight-bold ID is:
+            div #{instrumentid}
+
+        - let actionid = "/resource/instrument/" + instrumentid
+        form(id='instrumentForm', action=actionid, method="PUT")
+            div.form-group
+                label.instrumentAttr(for='name') Instrument Name:
+                input#instrument_name(type='text', name='instrument_name', value=instrument_name, class='form-control')
+            div.form-group
+                label.instrumentAttr(for='instrument_material') Instrument Material:
+                input#instrument_material(type='text', name='instrument_material', value=instrument_material, class='form-control')
+            div.form-group
+                label.instrumentAttr(for='instrument_price') Instrument Price:
+                input#instrument_price(type='number', name='instrument_price', value=instrument_price, class='form-control')
+            input(type="submit", class="btn btn-primary mt-2")
+
+        button(class="btn btn-secondary mt-2 ml-2" onclick="goBack()") Cancel
+
+    script.
+        function goBack() {
+            window.location.href = "/instrument";
+        }
+
+    script.
+        document.forms['instrumentForm'].addEventListener('submit', (event) => {
+            event.preventDefault();
+            fetch(event.target.action, {
+                method: 'PUT',
+                body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+            })
+            .then((resp) => resp.json())
+            .then((body) => {
+                alert("Update succeeded");
+                window.location.href = "/instrument";
+            })
+            .catch((error) => {
+                alert("Update failed " + error);
+            });
+        });

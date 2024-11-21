@@ -1,31 +1,53 @@
+//- extends layout
+
+//- block content
+//-   h1= title
+//-   ul each instrument in results
+//-   ul 
+//-   li = instrument.instrument_name
+//-   li = instrument.instrument_material
+//-   li = instrument.instrument_price
+//-   br
+
+//-   //- //- Define your instrument list with dummy data if `results` is empty
+//-   //- - var instrument = results && results.length > 0 ? results : [
+//-   //-     {instrument_name: "Guitar", instrument_material: "Wood", instrument_price: 15000},
+//-   //-     {instrument_name: "Piano", instrument_material: "Felt", instrument_price: 20000},
+//-   //-     {instrument_name: "Violin", instrument_material: "Steel", instrument_price: 10000}
+//-   //-   ]
+
+//-   //- div(class="container-fluid")
+//-   //-   div(class="row")
+//-   //-     each item, index in instrument
+//-   //-       div(class="col-sm-2" onclick=`buy(${index})`)
+//-   //-         p= item.instrument_name
+//-   //-         p= item.instrument_material
+//-   //-         p Price: #{item.instrument_price}
+
+//-   //- script.
+//-   //-   function buy(i) {
+//-   //-     alert('Buying instrument with index: ' + i);
+//-   //-     // Additional logic for the buy action can be added here
+//-   //-   }
 extends layout
 
 block content
-  h1= title
-  ul each instrument in results
-  ul 
-  li = instrument.instrument_name
-  li = instrument.instrument_material
-  li = instrument.instrument_price
-  br
+  h1 Search Results for Instrument
 
-  //- //- Define your instrument list with dummy data if `results` is empty
-  //- - var instrument = results && results.length > 0 ? results : [
-  //-     {instrument_name: "Guitar", instrument_material: "Wood", instrument_price: 15000},
-  //-     {instrument_name: "Piano", instrument_material: "Felt", instrument_price: 20000},
-  //-     {instrument_name: "Violin", instrument_material: "Steel", instrument_price: 10000}
-  //-   ]
+  .container-fluid
+    .row
+      each item in results
+        div.col-sm-3
+          h3 #{item.instrument_name}
+          p instrument_material: #{item.instrument_material}
+          p instrument_price: #{item.instrument_price}
+          a(href=`/instrument/${item._id}`) Inspect
+          a(href=`/instrument/${item._id}/update`) Update
+          a(href=`/instrument/${item._id}/delete`) Delete
+  
+  a(href='/instrument/create') Add New Instrument
 
-  //- div(class="container-fluid")
-  //-   div(class="row")
-  //-     each item, index in instrument
-  //-       div(class="col-sm-2" onclick=`buy(${index})`)
-  //-         p= item.instrument_name
-  //-         p= item.instrument_material
-  //-         p Price: #{item.instrument_price}
-
-  //- script.
-  //-   function buy(i) {
-  //-     alert('Buying instrument with index: ' + i);
-  //-     // Additional logic for the buy action can be added here
-  //-   }
+  script.
+    function buy(index) {
+      alert(`You purchased item ${index}`);
+    }

@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    h1 Instrument Detail
+
+    if (toShow == null)
+        h2 No instance found
+    else
+        - let instrumentid = toShow._id
+        - let name = toShow.instrument_name
+        - let instrumentsmaterial = toShow.instrument_material
+        - let instrumentsprice = toShow.instrument_price
+
+        div(class="mb-3")
+            div.row.mb-2
+                div(class='instrumentAttr mr-3 font-weight-bold') Instrument ID:
+                div #{instrumentid}
+            div.row.mb-2
+                div(class='instrumentAttr mr-3 font-weight-bold') Instrument Name:
+                div #{name}
+            div.row.mb-2
+                div(class='instrumentAttr mr-3 font-weight-bold') Instrument Material:
+                div #{instrumentmaterial}
+            div.row.mb-2
+                div(class='instrumentAttr mr-3 font-weight-bold') Instrument Price:
+                div #{instrumentprice}
+
+        //- button(class="btn btn-secondary mt-3" onclick="goBack()") Go Back
+
+    //- script.
+    //-     function goBack() {
+    //-         window.location.href = "/instruments";
+    //-     }

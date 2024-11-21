@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1= title
+  form(id='InstrumentForm', action="/resource/instrument", method="POST")
+    div.form-group
+      label.instrumentAttr(for='instrument_name') Instrument Name
+      input#instrument_name(type='text', name='instrument_name')
+    div.form-group
+      label.instrumentAttr(for='instrument_material') Instrument Material
+      input#instrument_material(type='text', name='instrument_material')
+    div.form-group
+      label.instrumentAttr(for='instrument_price') Instrument Price
+      input#instrument_price(type='number', name='instrument_price')
+    input(type="submit")
+  script.  
+    document.forms['InstrumentForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target))
+      }).then((resp) => {
+        return resp.json();
+      }).then((body) => {
+        alert("Save succeeded");
+      }).catch((error) => {
+        alert("Save failed " + error);
+      });
+    }); 
