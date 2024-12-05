@@ -66,10 +66,10 @@ router.get('/instrument:id', instrument_controller.instrument_detail);
 
 router.get('/detail', instrument_controller.instrument_view_one_Page);
 
-router.get('/create', instrument_controller.instrument_create_Page);
+router.get('/create', secured, instrument_controller.instrument_create_Page);
 
-router.get('/update', instrument_controller.instrument_update_Page);
+router.get('/update',secured, instrument_controller.instrument_update_Page);
 
-router.get('/delete', instrument_controller.instrument_delete_Page);
+router.get('/delete',secured, instrument_controller.instrument_delete_Page);
 
 module.exports = router;
